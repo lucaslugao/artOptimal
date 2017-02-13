@@ -5,3 +5,6 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 CTestTestfile.cmake
+output_0.txt
+.idea/workspace.xml
+cmake-build-debug/

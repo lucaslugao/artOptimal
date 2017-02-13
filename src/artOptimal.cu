@@ -57,6 +57,7 @@ void cumsum2D(int *m, int v, int w, int h, int *out) {
         }
     }
 }
+
 template<typename Numeric>
 void show(Numeric *image, int w, int h, const string &map = "Greys") {
     plt::figure();
@@ -167,7 +168,6 @@ void greedySolution(int pixelsLeft, int *image, int w, int h, vector <string> &o
     int counter = 0;
     auto timer = chrono::high_resolution_clock::now();
     while (pixelsLeft > 0) {
-        //tic();
 
         cumsum2D(image, 0, w, h, m0);
         cumsum2D(image, 1, w, h, m1);
@@ -277,11 +277,14 @@ int main(void) {
     //Read the matrix from the file
     int pixelsLeft = readMatrix(image, w, h);
 
+    //Shows the image using python's matplotlib
+    show(image, w, h);
+
     //Execute the greedy solution
     greedySolution(pixelsLeft, image, w, h, operations);
 
 
-    if(system("python ../verificationTool.py") != 0)
+    if (system("python ../src/verificationTool.py") != 0)
         printf("Verification failed!");
     //Write the solution to the file in a reversed order
     printf("Writting solution...");
