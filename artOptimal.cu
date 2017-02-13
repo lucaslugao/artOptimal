@@ -233,7 +233,6 @@ void greedySolution(int pixelsLeft, int *image, int w, int h, vector <string> &o
     }
 
     toc();
-    show(image, w, h);
 
     free(m0);
     free(m1);
@@ -281,6 +280,9 @@ int main(void) {
     //Execute the greedy solution
     greedySolution(pixelsLeft, image, w, h, operations);
 
+
+    if(system("python ../verificationTool.py") != 0)
+        printf("Verification failed!");
     //Write the solution to the file in a reversed order
     printf("Writting solution...");
 
@@ -289,6 +291,6 @@ int main(void) {
 
     for (auto it = operations.rbegin(); it < operations.rend(); it++)
         printf("%s\n", it->c_str());
-
     fclose(stdout);
+
 }
